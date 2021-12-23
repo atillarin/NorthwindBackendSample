@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Northwind.Entity.Dto
 {
-    class CustomerAndSuppliersByCity : DtoBase
+    public class DtoCustomerAndSuppliersByCity : DtoBase
     {
         public string City { get; set; }
         public string CompanyName { get; set; }

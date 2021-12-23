@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace Northwind.Entity.Dto
 {
-    class CustomerCustomerDemo : DtoBase
+    public class DtoCategorySalesFor1997 : DtoBase
     {
-        public string CustomerId { get; set; }
-        public string CustomerTypeId { get; set; }
+        public string CategoryName { get; set; }
+        public decimal? CategorySales { get; set; }
     }
 }
