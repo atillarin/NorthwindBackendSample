@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Northwind.Entity.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Northwind.Dal.Abstract
 {
-    public interface IUnitOfWorks:IDisposable  //bellek yönetimi için sınıf imhası
+    public interface IUnitOfWork:IDisposable  //bellek yönetimi için sınıf imhası
     {
-        // repository pattern gelecek
-
+        IGenericRepository<T> GetRepository<T>() where T : EntityBase;
 
         bool BeginTransaction();
         bool RollBackTransaction();

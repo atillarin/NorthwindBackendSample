@@ -1,4 +1,5 @@
-﻿using Northwind.Entity.IBase;
+﻿
+using Northwind.Entity.IBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +11,15 @@ namespace Nortwind.Interface  // Bll deki işlemlerin interface leri buarada ola
 {
     public interface IGenericService<T,TDto>where T:IEntityBase where TDto:IDtoBase
     {
-        List<TDto> GetAll();
+        IResponse<List<TDto>> GetAll();
 
-        List<TDto> GetAll(Expression<Func<T, bool>> expression);
+        IResponse<List<TDto>> GetAll(Expression<Func<T, bool>> expression);
 
-        TDto Find(int id);
+        IResponse<TDto> Find(int id);
 
         IQueryable<T> GetIQuaryable();
 
-        TDto Add(TDto item);
+        IResponse<TDto> Add(TDto item,bool saveChanges = true);
         Task<TDto> AddAsync(TDto item);
 
         TDto Update(TDto item);
@@ -30,7 +31,7 @@ namespace Nortwind.Interface  // Bll deki işlemlerin interface leri buarada ola
         bool Delete(TDto item);
         Task<bool> DeleteAsync(TDto item);
 
-
+        void Save();
 
         
 
