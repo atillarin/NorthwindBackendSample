@@ -12,11 +12,10 @@ namespace Nortwind.Interface  // Bll deki işlemlerin interface leri buarada ola
     public interface IGenericService<T,TDto>where T:IEntityBase where TDto:IDtoBase
     {
         IResponse<List<TDto>> GetAll();
-
+         
         IResponse<List<TDto>> GetAll(Expression<Func<T, bool>> expression);
 
         IResponse<TDto> Find(int id);
-
         IQueryable<T> GetIQuaryable();
 
         IResponse<TDto> Add(TDto item,bool saveChanges = true);
@@ -25,7 +24,7 @@ namespace Nortwind.Interface  // Bll deki işlemlerin interface leri buarada ola
         TDto Update(TDto item);
         Task<TDto> UpdateAsync(TDto item);
 
-        bool DeleteById(int id);
+        IResponse<bool> DeleteById(int id, bool saveChanges = true);
         Task<bool> DeleteByIdAsync(int id);
 
         bool Delete(TDto item);

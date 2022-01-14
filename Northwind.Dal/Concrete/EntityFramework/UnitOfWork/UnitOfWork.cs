@@ -17,6 +17,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.UnitOfWork
         DbContext context;
         IDbContextTransaction transaction; //??????????????
         bool _dispose;
+        string a = null;
         #endregion
 
         public UnitOfWork(DbContext context)
@@ -55,6 +56,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.UnitOfWork
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+            
         }
 
         public IGenericRepository<T> GetRepository<T>() where T : EntityBase

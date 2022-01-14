@@ -11,6 +11,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class CustomerRepository : GenericRepository<Customer>, ICustomerRepository
     {
+
         public CustomerRepository(DbContext context) : base(context)
         {
 
@@ -19,5 +20,11 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
         {
             return dbset.AsQueryable();
         }
+
+        //new public Customer Find(int id)
+        //{
+
+        //    return dbset.Find(id.ToString());
+        //}
     }
 }

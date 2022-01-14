@@ -11,5 +11,6 @@ namespace Nortwind.Interface
     public interface ICustomerService:IGenericService<Customer,DtoCustomer>
     {
         IQueryable CustomerReport();
+        
     }
 }
