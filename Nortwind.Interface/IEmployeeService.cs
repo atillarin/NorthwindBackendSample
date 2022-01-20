@@ -10,6 +10,6 @@ namespace Nortwind.Interface
 {
     public interface IEmployeeService : IGenericService<Employee, DtoEmployee>
     {
-        IQueryable EmployeeReport();
+
     }
 }

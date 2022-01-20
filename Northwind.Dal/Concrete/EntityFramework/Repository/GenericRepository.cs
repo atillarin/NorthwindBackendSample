@@ -24,7 +24,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
         {
             this.context = context;
             this.dbset = this.context.Set<T>();
-            this.context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            //this.context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
         #endregion
 
@@ -51,6 +51,10 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
         }
 
         public T Find(int id)
+        {
+            return dbset.Find(id);
+        }
+        public T Find(string id)
         {
             return dbset.Find(id);
         }

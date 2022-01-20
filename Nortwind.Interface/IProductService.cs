@@ -10,6 +10,6 @@ namespace Nortwind.Interface
 {
     public interface IProductService : IGenericService<Product, DtoProduct>
     {
-        IQueryable ProductReport();
+      
     }
 }

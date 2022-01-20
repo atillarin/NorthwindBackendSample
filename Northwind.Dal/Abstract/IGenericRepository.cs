@@ -14,6 +14,7 @@ namespace Northwind.Dal.Abstract
         T Add(T entity);
         T Update(T entity);
         T Find(int id);
+        T Find(string id);
         List<T> GetAll();
         IQueryable<T> GetAll(Expression<Func<T, bool>>expression);
 

@@ -10,6 +10,6 @@ namespace Nortwind.Interface
 {
     public interface ITerritoryService : IGenericService<Territory, DtoTerritory>
     {
-        IQueryable TerritoryReport();
+       
     }
 }

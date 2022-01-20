@@ -10,6 +10,6 @@ namespace Nortwind.Interface
 {
     public interface ICustomerCustomerDemoService : IGenericService<CustomerCustomerDemo, DtoCustomerCustomerDemo>
     {
-        IQueryable CustomerCustomerDemoReport();
+     
     }
 }

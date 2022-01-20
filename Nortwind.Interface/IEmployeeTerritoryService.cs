@@ -10,6 +10,6 @@ namespace Nortwind.Interface
 {
     public interface IEmployeeTerritoryService : IGenericService<EmployeeTerritory, DtoEmployeeTerritory>
     {
-        IQueryable EmployeeTerritoryReport();
+
     }
 }

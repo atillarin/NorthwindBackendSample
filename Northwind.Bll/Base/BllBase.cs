@@ -111,6 +111,29 @@ namespace Northwind.Bll.Base
         {
             try
             {
+                var entity = repository.Find(id);
+                return new Response<TDto>
+                {
+                    StatusCode = StatusCodes.Status200OK,
+                    Message = "Success",
+                    Data = ObjectMapper.Mapper.Map<T, TDto>(entity)
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new Response<TDto>
+                {
+                    StatusCode = StatusCodes.Status500InternalServerError,
+                    Message = $"Error:{ex.Message}",
+                    Data = null
+                };
+            }
+        }
+        public IResponse<TDto> Find(string id)
+        {
+            try
+            {
                 return new Response<TDto>
                 {
                     StatusCode = StatusCodes.Status200OK,

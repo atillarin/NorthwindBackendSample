@@ -10,6 +10,6 @@ namespace Nortwind.Interface
 {
     public interface IRegionService : IGenericService<Region, DtoRegion>
     {
-        IQueryable RegionReport();
+  
     }
 }

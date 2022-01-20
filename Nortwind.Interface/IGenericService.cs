@@ -16,6 +16,7 @@ namespace Nortwind.Interface  // Bll deki işlemlerin interface leri buarada ola
         IResponse<List<TDto>> GetAll(Expression<Func<T, bool>> expression);
 
         IResponse<TDto> Find(int id);
+        IResponse<TDto> Find(string id);
         IQueryable<T> GetIQuaryable();
 
         IResponse<TDto> Add(TDto item,bool saveChanges = true);

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 using Northwind.Entity.Models;
 
 #nullable disable
@@ -9,9 +10,11 @@ namespace Northwind.Dal.Concrete.EntityFramework.Context
 {
     public partial class NORTHWNDContext : DbContext
     {
-        public NORTHWNDContext()
-        {
-        }
+        //IConfiguration configuration;
+        //public NORTHWNDContext(IConfiguration configuration)
+        //{
+        //    this.configuration = configuration;
+        //}
 
         public NORTHWNDContext(DbContextOptions<NORTHWNDContext> options)
             : base(options)
@@ -47,14 +50,18 @@ namespace Northwind.Dal.Concrete.EntityFramework.Context
         public virtual DbSet<SummaryOfSalesByYear> SummaryOfSalesByYears { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Territory> Territories { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=COKMEZATILLA\\SQLEXPRESS;Database=NORTHWND;Trusted_Connection=True;");
-            }
+            optionsBuilder.UseLazyLoadingProxies(useLazyLoadingProxies: true);
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//                optionsBuilder.UseSqlServer("Server=COKMEZATILLA\\SQLEXPRESS;Database=NORTHWND;Trusted_Connection=True;");
+//                optionsBuilder.UseSqlServer(configuration.GetConnectionString("SqlServer"));
+//                varsayılan true
+//            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -805,6 +812,13 @@ namespace Northwind.Dal.Concrete.EntityFramework.Context
                     .HasForeignKey(d => d.RegionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Territories_Region");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.Property(e => e.UserID).HasColumnName("UserID");
+
+
             });
 
             OnModelCreatingPartial(modelBuilder);

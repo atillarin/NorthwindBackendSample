@@ -17,10 +17,28 @@ namespace Nortwind.WebApi.Controllers
     [ApiController]
     public class CustomerController : ApiBaseController<ICustomerService,Customer,DtoCustomer>
     {
-        
+        private readonly ICustomerService service;
         public CustomerController(ICustomerService service):base(service)
         {
-          
+            this.service = service;
+        }
+
+        [HttpGet("FindByStringId")]
+        public  IResponse<DtoCustomer> Find(string id)
+        {
+            try
+            {
+                return service.Find(id);
+            }
+            catch (Exception ex)
+            {
+                return new Response<DtoCustomer>
+                {
+                    StatusCode = StatusCodes.Status500InternalServerError,
+                    Message = $"Error{ex.Message}",
+                    Data = null
+                };
+            }
         }
 
     }

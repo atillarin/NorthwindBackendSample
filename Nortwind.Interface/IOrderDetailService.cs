@@ -10,6 +10,6 @@ namespace Nortwind.Interface
 {
     public interface IOrderDetailService : IGenericService<OrderDetail, DtoOrderDetail>
     {
-        IQueryable OrderDetailReport();
+   
     }
 }

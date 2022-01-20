@@ -10,6 +10,6 @@ namespace Nortwind.Interface
 {
     public interface IShipperService : IGenericService<Shipper, DtoShipper>
     {
-        IQueryable ShipperReport();
+     
     }
 }

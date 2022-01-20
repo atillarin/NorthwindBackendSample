@@ -1,4 +1,5 @@
 ﻿using Northwind.Entity.Dto;
+using Northwind.Entity.IBase;
 using Northwind.Entity.Models;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace Nortwind.Interface
 {
-    public interface ISupplierService : IGenericService<Supplier, DtoSupplier>
+    public interface IUserService:IGenericService<User, DtoUser>
     {
-      
+        IResponse<DtoUserToken> Login(DtoLogin login);
     }
 }
