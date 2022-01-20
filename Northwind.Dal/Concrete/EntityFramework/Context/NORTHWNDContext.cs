@@ -51,6 +51,8 @@ namespace Northwind.Dal.Concrete.EntityFramework.Context
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Territory> Territories { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -12,5 +12,7 @@ namespace Nortwind.Interface
     public interface IUserService:IGenericService<User, DtoUser>
     {
         IResponse<DtoUserToken> Login(DtoLogin login);
+
+        public IResponse RegisterUser(DtoRegisterUser dtoRegisterUser);
     }
 }

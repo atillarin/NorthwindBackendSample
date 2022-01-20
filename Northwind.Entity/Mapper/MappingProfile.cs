@@ -46,6 +46,7 @@ namespace Northwind.Entity.Mapper
             CreateMap<DtoLogin, User>(); 
             CreateMap<User, DtoUser>().ReverseMap();
             CreateMap<User, DtoLoginUser>();
+            CreateMap<DtoRegisterUser, User>();
 
 
 

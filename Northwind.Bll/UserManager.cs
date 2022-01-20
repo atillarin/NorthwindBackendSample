@@ -27,9 +27,12 @@ namespace Northwind.Bll
             this.configuration = configuration;
         }
 
+
+
         public IResponse<DtoUserToken> Login(DtoLogin login)
         {
-            // apiden gelecek dtologin user a maplenerek repodan sonuç alınır.
+            // apiden gelecek dtologin user a maplenerek repodan sonuç alınır. şifreyi hashleyerek gönder
+            login.Password = HashManager.MD5Hash(login.Password);
             var user= userRepository.Login(ObjectMapper.Mapper.Map<User>(login));
             
 
@@ -37,7 +40,6 @@ namespace Northwind.Bll
             {   // kayıt varsa user dtouser a, ordandan dtousertoken a
                 var dtoLoginUser = ObjectMapper.Mapper.Map<DtoLoginUser>(user);
                 var token = new TokenManager(configuration).CreateAccessToken(dtoLoginUser);
-
                 var userToken = new DtoUserToken()
                 {
                     DtoLoginUser = dtoLoginUser,
@@ -61,6 +63,35 @@ namespace Northwind.Bll
                 };
             }
             
+        }
+
+        public IResponse RegisterUser(DtoRegisterUser dtoRegisterUser)
+        {
+                var user = ObjectMapper.Mapper.Map<User>(dtoRegisterUser);
+                //usercode mevcutmu ?
+                var userCode = userRepository.UserCodeCheck(user);
+
+                if (userCode == null)
+                {   //kayıtyoksa şifreyi hashle, gönder 
+                    user.Password = HashManager.MD5Hash(dtoRegisterUser.Password);
+                    userRepository.AddUser(user);
+                    return new Response
+                    {
+                        Message = "The user has been registered.",
+                        Data = null,
+                        StatusCode = StatusCodes.Status200OK
+                    };
+
+                }
+                else
+                {
+                    return new Response
+                    {
+                        Message = "Usercode already exists",
+                        Data = null,
+                        StatusCode = StatusCodes.Status406NotAcceptable
+                    };
+                }
         }
     }
 }

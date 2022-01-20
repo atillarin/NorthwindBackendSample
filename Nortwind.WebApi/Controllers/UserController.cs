@@ -44,5 +44,24 @@ namespace Nortwind.WebApi.Controllers
                 };
             }
         }
+        [HttpPost("RegisterUser")]
+        public IResponse RegisterUser(DtoRegisterUser dtoRegisterUser)
+        {
+            try
+            {
+                return userService.RegisterUser(dtoRegisterUser);
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    Message = $"Error:{ex.Message}",
+                    Data = null,
+                    StatusCode = StatusCodes.Status500InternalServerError
+                };
+            }
+            
+        }
+
     }
 }
